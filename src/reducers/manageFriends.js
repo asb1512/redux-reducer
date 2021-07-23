@@ -12,9 +12,17 @@ export function manageFriends(state = {
         }
       )
     case "REMOVE_FRIEND":
-        return (
-          
-        )
+      let friendIndex = state.friends.findIndex(obj => obj.id === action.id)
+
+      return (
+        {
+          ...state,
+          friends: [
+            ...state.friends.slice(0, friendIndex),
+            ...state.friends.slice(friendIndex + 1)
+          ]
+        }
+      )
     default:
       return state;
   }
